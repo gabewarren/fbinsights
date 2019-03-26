@@ -1,0 +1,17 @@
+Facebook:
+  access_token: token
+  ad_account_id: adaccountid
+  app_secret: appsecret
+  app_id: appid
+params:
+  time_range:
+    since: '2019-02-01'
+    until: '2019-02-28'
+  csvfilename: insights.csv
+redshift:
+  host: endpoint
+  port: 5439
+  user: user
+  pass: password
+  db: dev database
+  tablename: tablename
