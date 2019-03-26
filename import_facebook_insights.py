@@ -30,19 +30,23 @@ from yaml import safe_load, load, dump
 
 
 
-
+#Open yaml config file
 stream = open('config.yaml', 'r') 
 config = safe_load(stream)
 
+#connect to Redshift
 engine = sa.create_engine(f"redshift+psycopg2://{config['redshift']['user']}:{config['redshift']['pass']}@{config['redshift']['host']}:{config['redshift']['port']}/{config['redshift']['db']}")
 
+#Facebook APP details
 access_token = config['Facebook']['access_token']
 ad_account_id = config['Facebook']['ad_account_id']
 app_secret = config['Facebook']['app_secret']
 app_id = config['Facebook']['app_id']
+
+#Initialize FB API
 FacebookAdsApi.init(access_token=access_token)
 
-
+#Fields to pull for Insights report
 fields = [
    'reach',
     'impressions',
@@ -54,6 +58,7 @@ fields = [
     'account_name',
     'account_id',
 ]
+#Insight report parameters
 params = {
     'level': 'account',
     'filtering': [],
